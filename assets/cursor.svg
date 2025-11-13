@@ -1,0 +1,36 @@
+<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- 灰白色发光效果 -->
+    <filter id="cursorGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+    
+    <!-- 阴影效果 -->
+    <filter id="cursorShadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="1.2"/>
+      <feOffset dx="1.5" dy="1.5" result="offsetblur"/>
+      <feFlood flood-color="#000000" flood-opacity="0.4"/>
+      <feComposite in2="offsetblur" operator="in"/>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- 纸飞机形/半梭形，右下指向左上（正确的对角线） -->
+  <g transform="rotate(45 16 16)">
+    <!-- 主体纸飞机形状 -->
+    <path d="M 8,16 L 22,12 L 28,16 L 22,20 L 8,16 L 16,16 L 8,16" 
+          fill="#333333" 
+          stroke="#555555" 
+          stroke-width="0.8"
+          filter="url(#cursorShadow)"/>
+    
+    <!-- 灰白色光晕层 -->
+    <path d="M 9,16 L 21,13 L 26,16 L 21,19 L 9,16 L 15,16 L 9,16" 
+          fill="#666666" 
+          filter="url(#cursorGlow)"/>
+  </g>
+</svg>

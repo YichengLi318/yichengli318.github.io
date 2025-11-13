@@ -12,16 +12,18 @@
   --base: 16px;
   --h1: 42px;
   --h2: 18px;
+  --small: 14px;
   --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  --font-display: "Montserrat", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
 * { box-sizing: border-box; }
 html, body { height: 100%; }
 body {
   margin: 0;
-  font-family: var(--font-sans);
-  color: var(--text);
-  background: var(--bg);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background: #e0e0e0;
+  color: #333;
   line-height: 1.6;
 }
 
@@ -45,23 +47,27 @@ body {
 header.site-header {
   padding: 14px 16px 24px;
   border-bottom: 1px solid var(--border);
-  background: #fff;
+  background: #f5f5f5;
   border-radius: var(--radius);
   backdrop-filter: blur(6px);
   color: var(--text);
+  min-height: 320px;
+  margin-bottom: 32px;
+  padding: 14px 32px 24px;
 }
 
 .header-row {
   display: grid;
-  grid-template-columns: 1fr 96px;
+  grid-template-columns: 1fr auto;
   gap: 16px;
   align-items: center;
 }
 .avatar {
-  width: 96px;
-  height: 96px;
-  border-radius: 50%;
-  object-fit: cover;
+  width: auto;
+  height: 300px;
+  max-width: 100%;
+  border-radius: 12px;
+  object-fit: contain;
   box-shadow: var(--shadow);
   border: 1px solid var(--border);
 }
@@ -71,6 +77,9 @@ header.site-header {
 .tagline { color: var(--muted); margin-top: calc(var(--space) * 0.75); font-size: 26px; font-weight: 700; letter-spacing: 0.2px; }
 
 .links {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
   margin-top: 8px;
   display: flex;
   flex-wrap: wrap;
@@ -84,20 +93,26 @@ header.site-header {
 .links .icon-link { display: inline-flex; align-items: center; gap: 6px; }
 .icon { width: 20px; height: 20px; fill: var(--accent); display: inline-block; }
  .icon-linkedin { width: 18px; height: 18px; }
+.icon {
+  width: 18px;
+  height: 18px;
+}
 
-section { padding: calc(var(--space) * 2.75) 0; border-bottom: 1px solid var(--border); }
+section {
+  margin-bottom: 32px;
+  padding: calc(var(--space) * 2.75) calc(var(--space) * 2);
+  border-bottom: 1px solid var(--border);
+  background: #f5f5f5;
+  border-radius: var(--radius);
+}
 section:last-child { border-bottom: none; }
 
 .reveal { opacity: 0; transform: translateY(18px); transition: opacity .5s ease, transform .5s ease; }
 .reveal.in { opacity: 1; transform: translateY(0); }
 
-section h2 {
-  font-size: var(--h2);
-  margin: 0 0 12px 0;
-  text-transform: uppercase;
-  letter-spacing: 0.8px;
+section {
+  margin-bottom: 32px;
 }
-
 .item { margin-bottom: 12px; }
 .item {
   padding: 12px 14px;
@@ -123,11 +138,17 @@ section h2 {
   padding: 4px 10px;
   margin: 4px 6px 4px 0;
   border: 1px solid var(--border);
-  border-radius: var(--radius);
+  border-radius: 16px;
   font-size: 13px;
-  color: #333;
-  background: #fafafa;
-  box-shadow: var(--shadow);
+  color: var(--text);
+  background: var(--bg);
+  box-shadow: none;
+  cursor: default;
+  opacity: 0.9;
+  transition: opacity 0.2s ease;
+}
+.pill:hover {
+  opacity: 1;
 }
 
 .cta {
@@ -168,10 +189,72 @@ section h2 {
 .tab-headers button { 
   padding: 6px 10px; border: 1px solid var(--border); border-radius: var(--radius);
   background: #fff; color: var(--text); cursor: pointer; font-size: 14px;
+  transition: background 0.2s ease, color 0.2s ease;
+  box-shadow: var(--shadow);
+}
+.tab-headers button:hover {
+  background: #f0f0f0;
 }
 .tab-headers button.active { background: var(--accent); color: #fff; }
 
-@media (max-width: 640px) {
-  .name { font-size: 28px; }
-  .tagline { font-size: 14px; }
+.name {
+  font-size: 40px;
+  font-weight: 400;
+  font-family: var(--font-display);
+}
+.tagline {
+  font-size: 20px;
+  font-weight: 600;
+  font-family: var(--font-sans);
+}
+.item-meta,
+.item-subtitle {
+  font-size: var(--small);
+  color: #555;
+  margin-top: 2px;
+}
+
+/* 自定义黑白灰科技感箭头光标 */
+* {
+  cursor: url('../cursor.svg') 0 0, auto;
+}
+
+/* 只有真正的超链接显示手型光标 */
+a[href] {
+  cursor: url('../cursor.svg') 0 0, pointer;
+}
+
+/* 输入框使用文本光标 */
+input, textarea, select {
+  cursor: url('../cursor.svg') 0 0, text;
+}
+/* 经历部分时间地点布局 */
+.item-subtitle {
+  margin-bottom: 0.8rem;
+}
+
+.role {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 0.4rem;
+}
+
+.time-location {
+  font-size: 0.95rem;
+  color: #666;
+  margin-top: 0.2rem;
+}
+
+.time-location .time,
+.time-location .location,
+.time-location .separator {
+  font-size: 0.95rem;
+  color: #666;
+  display: inline;
+}
+
+.time-location .separator {
+  margin: 0 0.3rem;
+  color: #888;
 }

@@ -30,7 +30,7 @@
               </a>
           </div>
           </div>
-          <img src="photo.png" alt="Profile photo" class="avatar" />
+          <img src="photo.jpg" alt="Profile photo" class="avatar" />
         </div>
       </header>
 
@@ -58,8 +58,12 @@
           <div class="item" v-for="(item, idx) in site.sections.find(s=>s.id==='research').items" :key="item.title">
             <div class="item-title">{{ item.title }}</div>
             <div class="item-subtitle">
-              <div class="row"><span class="role">{{ item.role }}</span><span class="time">{{ item.time }}</span></div>
-              <div class="location">{{ item.location }}</div>
+              <div class="role">{{ item.role }}</div>
+              <div class="time-location">
+                <span class="location">{{ item.location }}</span>
+                <span class="separator"> · </span>
+                <span class="time">{{ item.time }}</span>
+               </div>
             </div>
             <ul class="bullets">
               <li v-for="(b, j) in item.bullets" :key="b">{{ b }}</li>
@@ -70,8 +74,12 @@
           <div class="item" v-for="(item, idx) in site.sections.find(s=>s.id==='internship').items" :key="item.title">
             <div class="item-title">{{ item.title }}</div>
             <div class="item-subtitle">
-              <div class="row"><span class="role">{{ item.role }}</span><span class="time">{{ item.time }}</span></div>
-              <div class="location">{{ item.location }}</div>
+              <div class="role">{{ item.role }}</div>
+               <div class="time-location">
+                <span class="location">{{ item.location }}</span>
+                <span class="separator"> · </span>
+                <span class="time">{{ item.time }}</span>
+               </div>
             </div>
             <ul class="bullets">
               <li v-for="(b, j) in item.bullets" :key="b">{{ b }}</li>
@@ -82,8 +90,12 @@
           <div class="item" v-for="(item, idx) in site.sections.find(s=>s.id==='projects').items" :key="item.title">
             <div class="item-title">{{ item.title }}</div>
             <div class="item-subtitle">
-              <div class="row"><span class="role">{{ item.role }}</span><span class="time">{{ item.time }}</span></div>
-              <div class="location">{{ item.location }}</div>
+              <div class="role">{{ item.role }}</div>
+              <div class="time-location">
+                <span class="time">{{ item.time }}</span>
+                <span class="separator"> · </span>
+                <span class="location">{{ item.location }}</span>
+              </div>
             </div>
             <ul class="bullets">
               <li v-for="(b, j) in item.bullets" :key="b">{{ b }}</li>
