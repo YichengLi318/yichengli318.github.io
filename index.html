@@ -1,1 +1,128 @@
-Hello World!
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Welcome to Yicheng Li's Website!</title>
+    <meta name="description" content="Physics & NLP — Peking University" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body>
+    <canvas id="bg"></canvas>
+    <div id="app" class="container">
+      <header class="site-header">
+        <div class="header-row">
+          <div class="header-main">
+            <div class="name">{{ typedName }}</div>
+            <div class="tagline">{{ site.tagline }}</div>
+          <div class="links">
+              <a :href="'mailto:'+site.contact.email" class="icon-link" aria-label="Email">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/>
+                </svg>
+                <span>{{ site.contact.email }}</span>
+              </a>
+              <a :href="site.contact.linkedin" target="_blank" rel="noopener" class="icon-link" aria-label="LinkedIn">
+                <svg class="icon icon-linkedin" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM0 8.98h5v15H0v-15zm7.5 0h4.78v2.05h.07c.66-1.24 2.27-2.55 4.67-2.55 4.99 0 5.91 3.29 5.91 7.57v8.93h-5v-7.91c0-1.89-.03-4.33-2.64-4.33-2.64 0-3.04 2.06-3.04 4.2v8.04h-5v-15z"/>
+                </svg>
+                <span>LinkedIn</span>
+              </a>
+          </div>
+          </div>
+          <img src="photo.png" alt="Profile photo" class="avatar" />
+        </div>
+      </header>
+
+      
+      <section v-if="site.sections.find(s=>s.id==='education')" id="education" class="reveal">
+        <h2>{{ site.sections.find(s=>s.id==='education').title }}</h2>
+        <div class="item" v-for="item in site.sections.find(s=>s.id==='education').items" :key="item.title">
+          <div class="item-title">{{ item.title }}</div>
+          <div class="item-meta" v-if="item.meta">{{ item.meta }}</div>
+          <ul class="bullets"><li v-for="b in item.bullets" :key="b">{{ b }}</li></ul>
+        </div>
+      </section>
+
+      
+
+      
+      <section id="experience" class="reveal">
+        <h2>Experience</h2>
+        <div class="tab-headers">
+          <button :class="{active: activeExperience==='research'}" @mouseenter="activeExperience='research'">Research</button>
+          <button :class="{active: activeExperience==='internship'}" @mouseenter="activeExperience='internship'">Internship</button>
+          <button :class="{active: activeExperience==='projects'}" @mouseenter="activeExperience='projects'">Projects</button>
+        </div>
+        <div v-if="activeExperience==='research'">
+          <div class="item" v-for="(item, idx) in site.sections.find(s=>s.id==='research').items" :key="item.title">
+            <div class="item-title">{{ item.title }}</div>
+            <div class="item-subtitle">
+              <div class="row"><span class="role">{{ item.role }}</span><span class="time">{{ item.time }}</span></div>
+              <div class="location">{{ item.location }}</div>
+            </div>
+            <ul class="bullets">
+              <li v-for="(b, j) in item.bullets" :key="b">{{ b }}</li>
+            </ul>
+          </div>
+        </div>
+        <div v-else-if="activeExperience==='internship'">
+          <div class="item" v-for="(item, idx) in site.sections.find(s=>s.id==='internship').items" :key="item.title">
+            <div class="item-title">{{ item.title }}</div>
+            <div class="item-subtitle">
+              <div class="row"><span class="role">{{ item.role }}</span><span class="time">{{ item.time }}</span></div>
+              <div class="location">{{ item.location }}</div>
+            </div>
+            <ul class="bullets">
+              <li v-for="(b, j) in item.bullets" :key="b">{{ b }}</li>
+            </ul>
+          </div>
+        </div>
+        <div v-else>
+          <div class="item" v-for="(item, idx) in site.sections.find(s=>s.id==='projects').items" :key="item.title">
+            <div class="item-title">{{ item.title }}</div>
+            <div class="item-subtitle">
+              <div class="row"><span class="role">{{ item.role }}</span><span class="time">{{ item.time }}</span></div>
+              <div class="location">{{ item.location }}</div>
+            </div>
+            <ul class="bullets">
+              <li v-for="(b, j) in item.bullets" :key="b">{{ b }}</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      
+      <section v-for="section in filteredSections" :key="section.id" :id="section.id" class="reveal">
+        <h2>{{ section.title }}</h2>
+        <div class="item" v-for="item in section.items" :key="item.title">
+          <div class="item-title">{{ item.title }}</div>
+          <div class="item-meta" v-if="item.meta">{{ item.meta }}</div>
+          <ul class="bullets">
+            <li v-for="b in item.bullets" :key="b">{{ b }}</li>
+          </ul>
+        </div>
+      </section>
+
+      
+      <section id="skills" class="reveal">
+        <h2>Skills</h2>
+        <div class="tab-headers">
+          <button :class="{active: activeSkills==='languages'}" @mouseenter="activeSkills='languages'">Programming Languages</button>
+          <button :class="{active: activeSkills==='tools'}" @mouseenter="activeSkills='tools'">Tools & Frameworks</button>
+        </div>
+        <div v-if="activeSkills==='languages'">
+          <span class="pill" v-for="(lang, idx) in site.skills.languages" :key="lang">{{ lang }}</span>
+        </div>
+        <div v-else>
+          <span class="pill" v-for="(tool, idx) in site.skills.tools" :key="tool">{{ tool }}</span>
+        </div>
+      </section>
+
+      
+    </div>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+    <script src="assets/js/app.js"></script>
+  </body>
+</html>
