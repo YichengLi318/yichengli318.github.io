@@ -51,7 +51,6 @@
         <h2>Experience</h2>
         <div class="tab-headers">
           <button :class="{active: activeExperience==='research'}" @mouseenter="activeExperience='research'">Research</button>
-          <button :class="{active: activeExperience==='internship'}" @mouseenter="activeExperience='internship'">Internship</button>
           <button :class="{active: activeExperience==='projects'}" @mouseenter="activeExperience='projects'">Projects</button>
         </div>
         <div v-if="activeExperience==='research'">
@@ -60,22 +59,6 @@
             <div class="item-subtitle">
               <div class="role">{{ item.role }}</div>
               <div class="time-location">
-                <span class="location">{{ item.location }}</span>
-                <span class="separator"> · </span>
-                <span class="time">{{ item.time }}</span>
-               </div>
-            </div>
-            <ul class="bullets">
-              <li v-for="(b, j) in item.bullets" :key="b">{{ b }}</li>
-            </ul>
-          </div>
-        </div>
-        <div v-else-if="activeExperience==='internship'">
-          <div class="item" v-for="(item, idx) in site.sections.find(s=>s.id==='internship').items" :key="item.title">
-            <div class="item-title">{{ item.title }}</div>
-            <div class="item-subtitle">
-              <div class="role">{{ item.role }}</div>
-               <div class="time-location">
                 <span class="location">{{ item.location }}</span>
                 <span class="separator"> · </span>
                 <span class="time">{{ item.time }}</span>

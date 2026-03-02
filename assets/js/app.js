@@ -21,25 +21,19 @@ const siteData = {
       ]
     },
     {
-      id: 'internship',
-      title: 'Professional Internship',
-      items: [
-        {
-          title: 'ByteDance',
-          role: 'Intern Model Security Testing Engineer',
-          location: 'Beijing, China',
-          time: 'May 2025 - Aug. 2025',
-          bullets: [
-            "Conducted security testing on ByteDance's latest language models, focusing on injection attacks, and developed domain-specific test cases and automated attack scripts to evaluate model robustness",
-            'Analyzed model behavior under attack conditions, documented vulnerabilities, and collaborated with LLM developing teams to propose improvements'
-          ]
-        }
-      ]
-    },
-    {
       id: 'research',
       title: 'Research Experience',
       items: [
+        {
+          title: 'Analyzing LLM Interpretability via Discrete Fourier Transform',
+          role: 'Student under Prof. Zihao Fu, The Chinese University of Hong Kong',
+          location: 'Hong Kong',
+          time: 'Oct. 2025 - Present',
+          bullets: [
+            'Extracted hidden states from LLM layers and applied Discrete Fourier Transform (DFT) to convert them into frequency spectra, observing distinct spectral patterns across different task types and language topics.',
+            'Manipulated the frequency spectra via targeted editing and reconstructed LLM outputs by feeding modified spectra back into the model, demonstrating that specific edits lead to predictable changes in generation.'
+          ]
+        },
         {
           title: 'Physics Specialized Large Language Model (LLM)',
           role: 'Graduate Thesis under Prof. Siguang Wang, Peking University',
@@ -135,7 +129,7 @@ const App = {
   },
   computed: {
     filteredSections() {
-      const hide = ['education','internship','research','projects','interests'];
+      const hide = ['education','research','projects','interests'];
       return this.site.sections.filter(s => !hide.includes(s.id));
     }
   },
