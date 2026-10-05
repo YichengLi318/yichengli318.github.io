@@ -3,121 +3,428 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Welcome to Yicheng Li's Website!</title>
-    <meta name="description" content="Physics & NLP — Peking University" />
+    <title>Yicheng Li — LLM researcher and algorithm engineer</title>
+    <meta
+      name="description"
+      content="Yicheng Li. LLM researcher and algorithm engineer. M.S. Computer Science at the University of Chicago; recommendation systems at ByteDance; LLM interpretability and computational physics."
+    />
+    <meta name="theme-color" content="#06080a" />
+    <meta name="color-scheme" content="dark" />
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="preload" href="assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="assets/fonts/jetbrains-mono-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="assets/css/style.css" />
+
+    <meta property="og:type" content="profile" />
+    <meta property="og:title" content="Yicheng Li" />
+    <meta property="og:description" content="LLM researcher and algorithm engineer." />
+    <meta property="og:url" content="https://yichengli318.github.io/" />
   </head>
+
   <body>
-    <canvas id="bg"></canvas>
-    <div id="app" class="container">
-      <header class="site-header">
-        <div class="header-row">
-          <div class="header-main">
-            <div class="name">{{ typedName }}</div>
-            <div class="tagline">{{ site.tagline }}</div>
-          <div class="links">
-              <a :href="'mailto:'+site.contact.email" class="icon-link" aria-label="Email">
-                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <!-- The stage. One WebGL context for the whole page; the object standing
+         on it changes with the section you are reading. Decorative — every
+         object restates something the text already says — so it is hidden
+         from assistive technology. -->
+    <div class="stage" id="stage" aria-hidden="true">
+      <p class="stage-hint">drag to rotate</p>
+    </div>
+
+    <header class="strip">
+      <a class="strip-mark" href="#ident">Yicheng&nbsp;Li</a>
+    </header>
+
+    <!-- Section rail. Ticks are placed at each section's real scroll offset,
+         so the rail's own geometry shows where the page's weight sits. -->
+    <nav class="rail" aria-label="Sections">
+      <ol class="rail-list"></ol>
+    </nav>
+
+    <main id="main" tabindex="-1">
+      <!-- ─────────────────────────────────────────────── 00 · ident ───── -->
+      <section
+        id="ident"
+        class="deck deck--hero"
+        data-model="galaxy"
+        data-accent="cyan"
+        data-label="ident"
+      >
+        <div class="col">
+          <figure class="portrait">
+            <img
+              src="assets/img/portrait-620.jpg"
+              srcset="assets/img/portrait-sm.jpg 480w, assets/img/portrait-620.jpg 620w, assets/img/portrait.jpg 900w"
+              sizes="clamp(140px, 18vw, 190px)"
+              alt="Yicheng Li"
+              width="620"
+              height="874"
+              decoding="async"
+            />
+          </figure>
+          <h1 class="display">Yicheng Li</h1>
+          <p class="hero-title">LLM Researcher and Algorithm Engineer</p>
+          <!-- Icon buttons. The label each one needs is on the element rather
+               than in view: aria-label names it for assistive technology and
+               title shows the address or handle on hover. -->
+          <ul class="links">
+            <li>
+              <a
+                class="link-btn link-btn--wide"
+                href="mailto:yichengli318@gmail.com"
+                aria-label="Email yichengli318@gmail.com"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path
+                    d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4.24-8 5.09-8-5.09V6l8 5.09L20 6v2.24z"
+                  />
                 </svg>
-                <span>{{ site.contact.email }}</span>
+                <!-- Spelled out so it can be read off the page and copied;
+                     a mailto: link is no use to anyone without a mail client
+                     configured. The other two stay icon-only. -->
+                <span class="link-btn-text">yichengli318@gmail.com</span>
               </a>
-              <a :href="site.contact.linkedin" target="_blank" rel="noopener" class="icon-link" aria-label="LinkedIn">
-                <svg class="icon icon-linkedin" viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM0 8.98h5v15H0v-15zm7.5 0h4.78v2.05h.07c.66-1.24 2.27-2.55 4.67-2.55 4.99 0 5.91 3.29 5.91 7.57v8.93h-5v-7.91c0-1.89-.03-4.33-2.64-4.33-2.64 0-3.04 2.06-3.04 4.2v8.04h-5v-15z"/>
+            </li>
+            <li>
+              <a
+                class="link-btn"
+                href="https://www.linkedin.com/in/yichengli318"
+                target="_blank"
+                rel="noopener"
+                aria-label="LinkedIn, /in/yichengli318"
+                title="linkedin.com/in/yichengli318"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path
+                    d="M4.98 3.5a2.5 2.5 0 1 1-.02 5 2.5 2.5 0 0 1 .02-5zM2.4 21.5h5.2V9H2.4v12.5zM9.6 9h4.98v1.7h.07c.7-1.27 2.4-2.1 4.45-2.1 3.6 0 4.5 2.1 4.5 5.3v7.6h-5.2v-6.8c0-1.6-.6-2.7-2-2.7-1.1 0-1.8.75-2.1 1.5-.1.25-.12.6-.12.95v7.05H9.6V9z"
+                  />
                 </svg>
-                <span>LinkedIn</span>
               </a>
-          </div>
-          </div>
-          <img src="photo.jpg" alt="Profile photo" class="avatar" />
-        </div>
-      </header>
-
-      
-      <section v-if="site.sections.find(s=>s.id==='education')" id="education" class="reveal">
-        <h2>{{ site.sections.find(s=>s.id==='education').title }}</h2>
-        <div class="item" v-for="item in site.sections.find(s=>s.id==='education').items" :key="item.title">
-          <div class="item-title">{{ item.title }}</div>
-          <div class="item-meta" v-if="item.meta">{{ item.meta }}</div>
-          <ul class="bullets"><li v-for="b in item.bullets" :key="b">{{ b }}</li></ul>
-        </div>
-      </section>
-
-      
-
-      
-      <section id="experience" class="reveal">
-        <h2>Experience</h2>
-        <div class="tab-headers">
-          <button :class="{active: activeExperience==='research'}" @mouseenter="activeExperience='research'">Research</button>
-          <button :class="{active: activeExperience==='projects'}" @mouseenter="activeExperience='projects'">Projects</button>
-        </div>
-        <div v-if="activeExperience==='research'">
-          <div class="item" v-for="(item, idx) in site.sections.find(s=>s.id==='research').items" :key="item.title">
-            <div class="item-title">{{ item.title }}</div>
-            <div class="item-subtitle">
-              <div class="role">{{ item.role }}</div>
-              <div class="time-location">
-                <span class="location">{{ item.location }}</span>
-                <span class="separator"> · </span>
-                <span class="time">{{ item.time }}</span>
-               </div>
-            </div>
-            <ul class="bullets">
-              <li v-for="(b, j) in item.bullets" :key="b">{{ b }}</li>
-            </ul>
-          </div>
-        </div>
-        <div v-else>
-          <div class="item" v-for="(item, idx) in site.sections.find(s=>s.id==='projects').items" :key="item.title">
-            <div class="item-title">{{ item.title }}</div>
-            <div class="item-subtitle">
-              <div class="role">{{ item.role }}</div>
-              <div class="time-location">
-                <span class="time">{{ item.time }}</span>
-                <span class="separator"> · </span>
-                <span class="location">{{ item.location }}</span>
-              </div>
-            </div>
-            <ul class="bullets">
-              <li v-for="(b, j) in item.bullets" :key="b">{{ b }}</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      
-      <section v-for="section in filteredSections" :key="section.id" :id="section.id" class="reveal">
-        <h2>{{ section.title }}</h2>
-        <div class="item" v-for="item in section.items" :key="item.title">
-          <div class="item-title">{{ item.title }}</div>
-          <div class="item-meta" v-if="item.meta">{{ item.meta }}</div>
-          <ul class="bullets">
-            <li v-for="b in item.bullets" :key="b">{{ b }}</li>
+            </li>
+            <li>
+              <a
+                class="link-btn"
+                href="https://github.com/YichengLi318"
+                target="_blank"
+                rel="noopener"
+                aria-label="GitHub, /YichengLi318"
+                title="github.com/YichengLi318"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path
+                    d="M12 .5C5.73.5.5 5.73.5 12c0 5.09 3.29 9.4 7.86 10.93.58.11.79-.25.79-.56v-2c-3.2.7-3.88-1.54-3.88-1.54-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.7 5.39-5.26 5.68.42.36.78 1.06.78 2.14v3.17c0 .31.21.68.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5z"
+                  />
+                </svg>
+              </a>
+            </li>
           </ul>
         </div>
       </section>
 
-      
-      <section id="skills" class="reveal">
-        <h2>Skills</h2>
-        <div class="tab-headers">
-          <button :class="{active: activeSkills==='languages'}" @mouseenter="activeSkills='languages'">Programming Languages</button>
-          <button :class="{active: activeSkills==='tools'}" @mouseenter="activeSkills='tools'">Tools & Frameworks</button>
-        </div>
-        <div v-if="activeSkills==='languages'">
-          <span class="pill" v-for="(lang, idx) in site.skills.languages" :key="lang">{{ lang }}</span>
-        </div>
-        <div v-else>
-          <span class="pill" v-for="(tool, idx) in site.skills.tools" :key="tool">{{ tool }}</span>
+      <!-- ─────────────────────────────────────────── 01 · education ───── -->
+      <section id="education" class="deck" data-accent="crimson" data-label="education">
+        <div class="col">
+          <h2 class="section-title">
+            <span class="section-index">01</span>
+            Education
+          </h2>
+
+          <div class="entry" data-model="tower">
+            <div class="entry-head">
+              <h3 class="entry-title">University of Chicago</h3>
+              <p class="entry-role">M.S. in Computer Science</p>
+              <p class="entry-meta"><span>Chicago, IL</span><span>Sept 2026 – Dec 2027 expected</span></p>
+            </div>
+            <p class="course-line">
+              <em>Coursework</em> Parallel Programming · Systems Programming
+            </p>
+          </div>
+
+          <div class="entry" data-model="pagoda">
+            <div class="entry-head">
+              <h3 class="entry-title">Peking University</h3>
+              <p class="entry-role">B.S. in Physics &nbsp;·&nbsp; B.A. in Language and Literature</p>
+              <p class="entry-meta"><span>Beijing, China</span><span>Sept 2021 – July 2025</span></p>
+            </div>
+            <p class="course-line">
+              <em>Coursework</em> Natural Language Processing · Group Theory · Partial Differential
+              Equations · Complex Analysis · Quantum Field Theory
+            </p>
+            <ul class="awards">
+              <li>Outstanding Academic Achievement Prize <span>2022, 2024</span></li>
+              <li>UBIQUANT Scholarship <span>2022</span></li>
+              <li>Gold Medal, 37th China Physics Olympiad <span>2020</span></li>
+            </ul>
+          </div>
         </div>
       </section>
 
-      
+      <!-- ───────────────────────────────────────────── 02 · bytedance ─── -->
+      <section id="bytedance" class="deck" data-model="office" data-accent="teal" data-label="industry">
+        <div class="col">
+          <h2 class="section-title">
+            <span class="section-index">02</span>
+            Industry Experience
+          </h2>
+          <div class="entry-head">
+            <h3 class="entry-title">ByteDance <span class="entry-org">· Douyin</span></h3>
+            <p class="entry-role">Algorithm Engineer Intern, Recommendation</p>
+            <p class="entry-meta"><span>Chengdu, China</span><span>Apr – Aug 2026</span></p>
+          </div>
+
+          <article class="work">
+            <h4 class="work-title"><span class="work-tag">A</span> Closed-loop subsidy allocation</h4>
+            <p class="work-lede">
+              All new-creator subsidies on Douyin were granted by two pipelines that never spoke to
+              each other: traffic boosts and coupons. I replaced both with a single closed-loop
+              <strong class="tech">model predictive control (MPC)</strong> allocator over one shared
+              budget.
+            </p>
+            <ul class="bullets">
+              <li>
+                Solved the hourly budget split with
+                <strong class="tech">Lagrange multipliers</strong>, routing each next unit of budget
+                to whichever channel had the higher marginal return.
+              </li>
+              <li>
+                Fitted the response curves on a rolling window of the
+                <strong class="metric">3,000</strong> latest online samples, so the allocator tracks
+                the platform instead of a snapshot of it.
+              </li>
+              <li>
+                Shipped to production as the governing allocator for the whole new-creator subsidy
+                budget, replacing the open-loop pipelines rather than sitting alongside them.
+              </li>
+            </ul>
+            <ul class="metrics" aria-label="Outcomes">
+              <li>
+                <span class="metric-val" data-count="3" data-prefix="−" data-suffix="%">−3%</span>
+                <span class="metric-key">subsidy budget used</span>
+              </li>
+              <li>
+                <span class="metric-val">flat</span>
+                <span class="metric-key">content performance</span>
+              </li>
+            </ul>
+          </article>
+
+          <article class="work">
+            <h4 class="work-title"><span class="work-tag">B</span> Real-time delivery labeling</h4>
+            <p class="work-lede">
+              I built a labeling and monitoring pipeline spanning the full content and ad delivery
+              path — request, retrieval, indexing, ranking.
+            </p>
+            <ul class="bullets">
+              <li>
+                Joined delivery events into labeled training samples through
+                <strong class="tech">Kafka</strong>, caching request-time features in
+                <strong class="tech">ABase</strong>, ByteDance's distributed key-value store, until
+                the engagement labels caught up.
+              </li>
+              <li>
+                Engagement arrives minutes to hours after the impression, so the join is a wait on a
+                keyed cache rather than a window — the feature side is written once at request time
+                and read when its label lands.
+              </li>
+            </ul>
+            <ul class="metrics" aria-label="Outcomes">
+              <li>
+                <span class="metric-val" data-count="400" data-suffix="K QPS">400K QPS</span>
+                <span class="metric-key">events joined</span>
+              </li>
+              <li>
+                <span class="metric-val">&lt; 1 h</span>
+                <span class="metric-key">sample latency</span>
+              </li>
+            </ul>
+          </article>
+
+          <p class="tags"><span>Go</span><span>Distributed Database</span><span>Message Queue</span><span>High Concurrency</span></p>
+        </div>
+      </section>
+
+      <!-- ──────────────────────────────────────── 03 · activation-fft ─── -->
+      <section
+        id="activation-fft"
+        class="deck"
+        data-model="spectrum"
+        data-accent="lime"
+        data-label="activation-fft"
+      >
+        <div class="col">
+          <h2 class="section-title">
+            <span class="section-index">03</span>
+            Research &amp; Personal Projects
+            <span class="section-note">open source</span>
+          </h2>
+          <div class="entry-head">
+            <h3 class="entry-title">
+              <a class="entry-link" href="https://github.com/YichengLi318/Activation_FFT" target="_blank" rel="noopener"
+                >Activation-FFT</a
+              >
+            </h3>
+            <p class="entry-role">What does a language model look like in the frequency domain?</p>
+          </div>
+
+          <p class="body">
+            Interpretability work on language models has mostly examined one activation at a time.
+            Activation-FFT takes the Fourier transform of the hidden states along the
+            <strong class="tech">token axis</strong>, so a whole layer can be read as a spectrum
+            rather than as a set of isolated activations.
+          </p>
+          <ul class="bullets">
+            <li>
+              An invertible edit hook applies an arbitrary spectral transform at any layer and
+              inverts it back into activations, so an edit in the frequency domain becomes a real
+              forward pass.
+            </li>
+            <li>
+              Across several benchmarks, edits to different frequency bands drive distinct and
+              reproducible shifts in the output — evidence that the bands carry functionally
+              separable information rather than one smear of signal.
+            </li>
+            <li>
+              The transform runs along the token axis per layer and per hidden dimension, so the
+              spectrum is a property of the sequence at that depth, not of the weights.
+            </li>
+          </ul>
+
+          <!-- The gates drive the terrain in the canvas; with no canvas, or with
+               no script, CSS takes them out rather than leaving dead controls. -->
+          <div class="gates">
+            <p class="gates-lede">
+              The six pillars standing in front of the terrain are the band energies, and
+              they are the control. Close one and the trajectories behind them are rebuilt
+              from the edited spectrum.
+            </p>
+            <div class="gates-row" role="group" aria-label="Frequency band gates">
+              <button class="gate" type="button" data-band="0" aria-pressed="true">DC</button>
+              <button class="gate" type="button" data-band="1" aria-pressed="true">Low</button>
+              <button class="gate" type="button" data-band="2" aria-pressed="true">Medium Low</button>
+              <button class="gate" type="button" data-band="3" aria-pressed="true">Medium</button>
+              <button class="gate" type="button" data-band="4" aria-pressed="true">Medium High</button>
+              <button class="gate" type="button" data-band="5" aria-pressed="true">High</button>
+            </div>
+            <p class="gates-foot">
+              <span>Synthetic trajectories, real transform.</span>
+              <button class="gates-reset" type="button" data-gates-reset hidden>open all</button>
+            </p>
+          </div>
+
+          <p class="tags"><span>PyTorch</span><span>NumPy</span><span>Hugging Face Transformers</span><span>Fourier Transformation</span></p>
+        </div>
+      </section>
+
+      <!-- ───────────────────────────────────────────── 04 · photon ────── -->
+      <section id="photon" class="deck" data-model="orbital" data-accent="violet" data-label="photon">
+        <div class="col">
+          <p class="section-title">
+            <span class="section-index">04</span>
+            Research &amp; Personal Projects
+            <span class="section-note">undergraduate thesis</span>
+          </p>
+          <div class="entry-head">
+            <h3 class="entry-title">Physics-Specialized LLM</h3>
+            <p class="entry-role">An 8B model that answers physics like a 70B one</p>
+          </div>
+
+          <p class="body">
+            I built a physics-specialized corpus, fine-tuned a small LLM, and put a retrieval layer
+            underneath.
+          </p>
+          <ul class="bullets">
+            <li>
+              Built a physics knowledge dataset, <strong class="tech">PHOTON</strong> (Physics Hybrid
+              Open Training Of Networks, available on Kaggle), and fine-tuned a
+              <strong class="tech">Llama-3.1-8B</strong> model on it using
+              <strong class="tech">LoRA</strong> with <strong class="tech">Unsloth</strong>.
+            </li>
+            <li>
+              Organised a retrieval-augmented generation framework, embedded the knowledge with
+              <strong class="tech">SBERT</strong> for vectorisation, and built a vector database with
+              <strong class="tech">FAISS</strong>, enabling efficient retrieval of relevant
+              information.
+            </li>
+            <li>
+              Tested on multiple tasks including the <strong class="tech">GPQA</strong> benchmark,
+              reaching an overall accuracy of <strong class="metric">68.2%</strong> with the 8B
+              model, comparable to a 70B model.
+            </li>
+          </ul>
+
+          <p class="tags"><span>PyTorch</span><span>Hugging Face Transformers</span><span>Unsloth</span><span>LoRA</span><span>FAISS</span></p>
+        </div>
+      </section>
+
+      <!-- ────────────────────────────────────────────── 05 · deeph ────── -->
+      <section id="deeph" class="deck" data-model="wurtzite" data-accent="mint" data-label="deeph">
+        <div class="col">
+          <p class="section-title">
+            <span class="section-index">05</span>
+            Research &amp; Personal Projects
+          </p>
+          <div class="entry-head">
+            <h3 class="entry-title">Hamiltonians Neural Network for Degenerate Crystals</h3>
+            <p class="entry-role">Undergraduate Research Assistant, Tsinghua University</p>
+            <p class="entry-meta"><span>Beijing, China</span><span>Mar – Jun 2023</span></p>
+          </div>
+
+          <ul class="bullets">
+            <li data-degeneracy>
+              Proved that the existing networks produce the wrong
+              <strong class="tech">Hamiltonian</strong> — the property the whole method exists to
+              predict — for any crystal with <strong class="tech">degenerate energy bands</strong>.
+              When two bands coincide the eigenvectors stop being well defined, and the gradient the
+              network trains on is not the gradient of anything.
+            </li>
+            <li data-degeneracy-fix>
+              Proposed an <strong class="tech">auto-differentiation</strong> algorithm built on
+              linear algebra that stays correct through the degeneracy, accommodating
+              <strong class="metric">80+</strong> elements of the periodic table, and reimplemented
+              it on <strong class="tech">SciPy</strong> and <strong class="tech">JAX</strong>.
+            </li>
+            <li>
+              Validated on classical crystal configurations including
+              <strong class="tech">GaN</strong> and <strong class="tech">GeS</strong>, where it beat
+              the previous method on both versatility and tolerance to hardware precision.
+            </li>
+          </ul>
+
+          <button class="finding-btn" type="button" data-degeneracy-toggle aria-pressed="false">
+            see the failure in the crystal
+          </button>
+
+          <p class="tags"><span>Python</span><span>JAX</span><span>SciPy</span><span>Auto Differential</span><span>Density Functional Theory</span></p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="col">
+        <p class="footer-line"><a href="#ident">Back to top</a></p>
+      </div>
+    </footer>
+
+    <!-- Jump palette, ⌘K / Ctrl+K / slash. -->
+    <div class="palette" data-palette hidden>
+      <div class="palette-box" role="dialog" aria-modal="true" aria-label="Jump to section">
+        <input
+          class="palette-input"
+          type="text"
+          placeholder="jump to…"
+          aria-label="Filter sections"
+          role="combobox"
+          aria-expanded="true"
+          aria-controls="palette-list"
+          aria-autocomplete="list"
+          autocomplete="off"
+          spellcheck="false"
+        />
+        <ol class="palette-list" id="palette-list" role="listbox" aria-label="Sections"></ol>
+      </div>
     </div>
 
-    <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
-    <script src="assets/js/app.js"></script>
+    <script type="module" src="assets/js/app.js"></script>
   </body>
 </html>
