@@ -241,6 +241,7 @@ button {
 .tags,
 .gates-foot,
 .course-line em,
+.course-groups dt,
 .awards span,
 .palette-input,
 .palette-list,
@@ -916,6 +917,28 @@ html[data-no-stage] .gates {
   text-transform: uppercase;
   color: var(--ink-dim);
 }
+/* Coursework grouped by field: the field as a key, its courses beside it.
+   Set in under the label with a rule, the way a .work block sits under its
+   entry, so the fields read as a level below "Coursework". */
+.course-groups {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  align-items: baseline;
+  gap: 0.35rem 1.2rem;
+  margin: 0.6rem 0 0;
+  padding-left: 1.1rem;
+  border-left: 1px solid var(--line);
+}
+.course-groups dt {
+  font-size: var(--fs-label);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+}
+.course-groups dd {
+  margin: 0;
+  text-wrap: pretty;
+}
 .awards {
   margin: 1.8rem 0 0;
   padding: 1.2rem 0 0;
@@ -935,6 +958,19 @@ html[data-no-stage] .gates {
   font-size: var(--fs-label);
   letter-spacing: 0.12em;
   color: var(--ink-dim);
+}
+/* The .entry-link look, drawn as an underline rather than a border: as a flex
+   item the link is a block, and a border would sit under the whole box once the
+   name wraps. */
+.awards a {
+  color: inherit;
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: color-mix(in srgb, currentColor 35%, transparent);
+  text-underline-offset: 0.3em;
+}
+.awards a:hover {
+  color: var(--ink-max);
 }
 
 /* ================================================================ footer */
@@ -1157,6 +1193,14 @@ html[data-no-stage] .gates {
   }
   .work {
     padding-left: 0.9rem;
+  }
+  .course-groups {
+    grid-template-columns: 1fr;
+    row-gap: 0;
+    padding-left: 0.9rem;
+  }
+  .course-groups dd + dt {
+    margin-top: 0.7rem;
   }
 }
 

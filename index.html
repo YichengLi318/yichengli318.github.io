@@ -137,7 +137,8 @@
               <p class="entry-meta"><span>Chicago, IL</span><span>Sept 2026 – Dec 2027 expected</span></p>
             </div>
             <p class="course-line">
-              <em>Coursework</em> Parallel Programming · Systems Programming
+              <em>Coursework</em> Parallel Programming · Systems Programming ·
+              Combinatorics &amp; Graph Theory
             </p>
           </div>
 
@@ -147,14 +148,34 @@
               <p class="entry-role">B.S. in Physics &nbsp;·&nbsp; B.A. in Language and Literature</p>
               <p class="entry-meta"><span>Beijing, China</span><span>Sept 2021 – July 2025</span></p>
             </div>
-            <p class="course-line">
-              <em>Coursework</em> Natural Language Processing · Group Theory · Partial Differential
-              Equations · Complex Analysis · Quantum Field Theory
-            </p>
+            <div class="course-line">
+              <em>Coursework</em>
+              <dl class="course-groups">
+                <dt>Math</dt>
+                <dd>
+                  Partial Differential Equations · Abstract Algebra · Probability ·
+                  Complex Analysis · Differential Geometry
+                </dd>
+                <dt>Computer Science</dt>
+                <dd>Algorithms · Natural Language Processing · Numerical Calculation</dd>
+                <dt>Physics</dt>
+                <dd>
+                  Quantum Field Theory · General Relativity · Statistical Mechanics · Electrodynamics
+                </dd>
+              </dl>
+            </div>
             <ul class="awards">
               <li>Outstanding Academic Achievement Prize <span>2022, 2024</span></li>
               <li>UBIQUANT Scholarship <span>2022</span></li>
-              <li>Gold Medal, 37th China Physics Olympiad <span>2020</span></li>
+              <li>
+                <a
+                  href="https://cpho-pku-edu-cn.translate.goog/info/1075/1222.htm?_x_tr_sl=auto&amp;_x_tr_tl=en&amp;_x_tr_hl=en"
+                  target="_blank"
+                  rel="noopener"
+                  >Gold Medal, 37th China Physics Olympiad</a
+                >
+                <span>2020</span>
+              </li>
             </ul>
           </div>
         </div>
@@ -275,18 +296,28 @@
           </p>
           <ul class="bullets">
             <li>
+              Built as an open-source Python package for causal LLMs: it transforms the hidden
+              states per layer and per hidden dimension, exposing each layer's spectrum and
+              periodicity — properties of the sequence at that depth, not of the weights.
+            </li>
+            <li>
               An invertible edit hook applies an arbitrary spectral transform at any layer and
               inverts it back into activations, so an edit in the frequency domain becomes a real
               forward pass.
             </li>
             <li>
-              Across several benchmarks, edits to different frequency bands drive distinct and
-              reproducible shifts in the output — evidence that the bands carry functionally
-              separable information rather than one smear of signal.
+              On <strong class="tech">Qwen3-1.7B</strong>, across
+              <strong class="metric">1,500+</strong> cases in four benchmarks, edits to different
+              frequency bands and layers drive distinct, reproducible shifts in the output —
+              evidence that the bands carry functionally separable information rather than one
+              smear of signal.
             </li>
             <li>
-              The transform runs along the token axis per layer and per hidden dimension, so the
-              spectrum is a property of the sequence at that depth, not of the weights.
+              The network acts as a gentle low-pass filter: at equal energy, noise in the lowest
+              band reaches the answer <strong class="metric">1.17×</strong> as strongly as noise in
+              the highest. On reading-comprehension detail questions, removing the low band at
+              layer 8, a shallow-middle layer, has the largest effect of any layer and band:
+              <strong class="metric">−7.4 F1</strong> on held-out data.
             </li>
           </ul>
 
